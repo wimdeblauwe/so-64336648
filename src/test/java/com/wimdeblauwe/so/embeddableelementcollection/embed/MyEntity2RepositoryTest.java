@@ -1,4 +1,4 @@
-package com.wimdeblauwe.so.embeddableelementcollection;
+package com.wimdeblauwe.so.embeddableelementcollection.embed;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,6 @@ class MyEntity2RepositoryTest {
     @Autowired
     private MyEntity2Repository repository;
     @Autowired
-    private AnotherEntityRepository anotherEntityRepository;
-    @Autowired
     private TestEntityManager entityManager;
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -44,8 +42,8 @@ class MyEntity2RepositoryTest {
 
     @Test
     void test() {
-        AnotherEntity anotherEntity = anotherEntityRepository.save(new AnotherEntity(new AnotherEntityId(1L)));
-        MyEntity2 entity = new MyEntity2(new MyEntity2Id(3L), new Doubles(anotherEntity, List.of(1.0, 1.5)));
+        MyEntity2 entity = new MyEntity2();
+        entity.setDoubles(new Doubles(List.of(1.0, 1.5)));
         repository.save(entity);
 
         entityManager.flush();

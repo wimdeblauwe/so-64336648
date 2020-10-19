@@ -1,4 +1,4 @@
-package com.wimdeblauwe.so.embeddableelementcollection;
+package com.wimdeblauwe.so.embeddableelementcollection.noembed;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;

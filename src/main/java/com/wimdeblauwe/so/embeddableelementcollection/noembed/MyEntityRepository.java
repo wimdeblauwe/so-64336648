@@ -1,4 +1,4 @@
-package com.wimdeblauwe.so.embeddableelementcollection;
+package com.wimdeblauwe.so.embeddableelementcollection.noembed;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.wimdeblauwe.so.embeddableelementcollection;
+package com.wimdeblauwe.so.embeddableelementcollection.mappedsuperclass;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Testcontainers
-class MyEntityRepositoryTest {
+class MyEntity3RepositoryTest {
 
     @Container
     private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>();
 
     @Autowired
-    private MyEntityRepository repository;
+    private MyEntity3Repository repository;
     @Autowired
     private TestEntityManager entityManager;
     @Autowired
@@ -42,13 +42,12 @@ class MyEntityRepositoryTest {
 
     @Test
     void test() {
-        MyEntity entity = new MyEntity();
-        entity.setDoubles(List.of(1.0, 1.5));
+        MyEntity3 entity = new MyEntity3(new MyEntity3Id(3L), new Doubles(List.of(1.0, 1.5)));
         repository.save(entity);
 
         entityManager.flush();
 
-        assertThat(jdbcTemplate.queryForObject("SELECT count(*) FROM my_entity_doubles", Long.class)).isEqualTo(2);
+        assertThat(jdbcTemplate.queryForObject("SELECT count(*) FROM my_entity3_doubles", Long.class)).isEqualTo(2);
     }
 
 }

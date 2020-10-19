@@ -1,12 +1,12 @@
-package com.wimdeblauwe.so.embeddableelementcollection;
+package com.wimdeblauwe.so.embeddableelementcollection.embed;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.OrderColumn;
 import java.util.List;
 
 @Embeddable
 public class Doubles {
-    @ManyToOne(fetch = FetchType.LAZY)
-    private AnotherEntity anotherEntity;
 
     @ElementCollection
     @OrderColumn
@@ -15,7 +15,7 @@ public class Doubles {
     protected Doubles() {
     }
 
-    public Doubles(AnotherEntity anotherEntity, List<Double> doubles) {
+    public Doubles(List<Double> doubles) {
         this.doubles = doubles;
     }
 
